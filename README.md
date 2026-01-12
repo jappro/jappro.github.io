@@ -24,7 +24,7 @@ As a <strong>Growth Strategist</strong>, I scale marketing concepts through hand
 I am a <strong>Web3 Community Manager and Growth Strategist</strong> with practical experience building, moderating, and scaling online communities across <strong>Web3, AI, and gaming ecosystems</strong>. My approach emphasizes structure, accountability, and alignment between community goals and project vision ensuring engagement translates into real value for both users and teams.
 Beyond Web3, I am a <strong>Petroleum Engineering student</strong> and a <strong>Procurement Practitioner at Racine Technologies Limited</strong>. This background has strengthened my understanding of structured operations, compliance, accountability, and real-world business processes. I apply these principles directly to community management, partnerships, and campaign execution, bridging decentralized innovation with professional operational discipline.
 By combining decentralized community building with real-world professional standards, I help projects grow <strong>authentically, sustainably, and with long-term vision</strong>—not just attention, but credibility and trust.
-  <img src="real-photo.png" alt="Uche Japheth" style="width:180px;border-radius:12px;margin:20px 0;">
+  <img src="https://github.com/user-attachments/assets/675c4a2f-5431-48a3-9a8a-04327cb1b2a1" alt="Uche Japheth" style="width:180px;border-redius:12px;margin:20px 0;"/>
 </section>
 
 <section>
