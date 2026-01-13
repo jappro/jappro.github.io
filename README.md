@@ -7,12 +7,9 @@
 <body>
 
 <header class="hero">
-  <h1>Japheth's Portfolio</h1>
-  <p>
-    
-  <h2>This is Japheth |</h2>
-<strong>A Web3 On-Chain Visionary • Project Analyst • Community & Growth Strategist</strong>
-<p><em>Analyzing on-chain systems, shaping clear narratives, and helping Web3 projects grow through insight-driven strategy and community alignment.</em></p>
+  <h1>This is Japheth |</h1>
+<strong><h3>A Web3 On-Chain Visionary • Project Analyst • Community & Growth Strategist</strong></h3>
+<p><strong><em>Analyzing on-chain systems, shaping clear narratives, and helping Web3 projects grow through insight-driven strategy and community alignment.</strong></em></p>
 </p>
 
 </header>
