@@ -1,11 +1,358 @@
-{
-  "title": "Japheth — Web3 On-Chain Researcher",
-  "description": "On-chain research, community building and growth strategy across AI, DeFi and GameFi.",
-  "siteUrl": "https://jappro.github.io/-portfolio",
-  "author": {
-    "name": "Japheth",
-    "email": "camzyxworld@gmail.com",
-    "twitter": "JaphOnChain"
-  },
-  "theme": "dark-minimal"
+// =========================
+// THEME TOGGLE
+// =========================
+const themeToggle = document.getElementById(‘themeToggle’);
+const htmlElement = document.documentElement;
+
+// Check for saved theme preference or default to ‘dark’
+const currentTheme = localStorage.getItem(‘theme’) || ‘dark’;
+htmlElement.setAttribute(‘data-theme’, currentTheme);
+
+themeToggle.addEventListener(‘click’, () => {
+const theme = htmlElement.getAttribute(‘data-theme’);
+const newTheme = theme === ‘dark’ ? ‘light’ : ‘dark’;
+
+htmlElement.setAttribute(‘data-theme’, newTheme);
+localStorage.setItem(‘theme’, newTheme);
+
+// Add transition animation
+document.body.style.transition = ‘background-color 0.3s ease, color 0.3s ease’;
+});
+
+// =========================
+// MOBILE NAVIGATION
+// =========================
+const navToggle = document.getElementById(‘navToggle’);
+const nav = document.getElementById(‘nav’);
+
+navToggle.addEventListener(‘click’, () => {
+const expanded = navToggle.getAttribute(‘aria-expanded’) === ‘true’ || false;
+navToggle.setAttribute(‘aria-expanded’, !expanded);
+nav.classList.toggle(‘open’);
+navToggle.classList.toggle(‘open’);
+});
+
+// Close mobile nav on link click
+document.querySelectorAll(’.main-nav a’).forEach(link => {
+link.addEventListener(‘click’, () => {
+if (nav.classList.contains(‘open’)) {
+nav.classList.remove(‘open’);
+navToggle.classList.remove(‘open’);
+navToggle.setAttribute(‘aria-expanded’, ‘false’);
 }
+});
+});
+
+// Close mobile nav when clicking outside
+document.addEventListener(‘click’, (e) => {
+if (nav.classList.contains(‘open’) &&
+!nav.contains(e.target) &&
+!navToggle.contains(e.target)) {
+nav.classList.remove(‘open’);
+navToggle.classList.remove(‘open’);
+navToggle.setAttribute(‘aria-expanded’, ‘false’);
+}
+});
+
+// =========================
+// SKILLS CAROUSEL
+// =========================
+const carousel = document.querySelector(’.skills-carousel’);
+const prevBtn = document.querySelector(’.carousel-prev’);
+const nextBtn = document.querySelector(’.carousel-next’);
+const indicators = document.querySelector(’.carousel-indicators’);
+const skillCards = document.querySelectorAll(’.skill-card’);
+
+// Create indicators
+skillCards.forEach((_, index) => {
+const indicator = document.createElement(‘div’);
+indicator.classList.add(‘carousel-indicator’);
+if (index === 0) indicator.classList.add(‘active’);
+indicator.addEventListener(‘click’, () => scrollToCard(index));
+indicators.appendChild(indicator);
+});
+
+const allIndicators = document.querySelectorAll(’.carousel-indicator’);
+
+// Scroll to specific card
+function scrollToCard(index) {
+const card = skillCards[index];
+const scrollLeft = card.offsetLeft - (carousel.offsetWidth / 2) + (card.offsetWidth / 2);
+carousel.scrollTo({ left: scrollLeft, behavior: ‘smooth’ });
+updateActiveIndicator(index);
+}
+
+// Update active indicator
+function updateActiveIndicator(index) {
+allIndicators.forEach((ind, i) => {
+ind.classList.toggle(‘active’, i === index);
+});
+}
+
+// Get current visible card index
+function getCurrentCardIndex() {
+const scrollLeft = carousel.scrollLeft;
+const cardWidth = skillCards[0].offsetWidth + 24; // card width + gap
+return Math.round(scrollLeft / cardWidth);
+}
+
+// Previous button
+prevBtn.addEventListener(‘click’, () => {
+const currentIndex = getCurrentCardIndex();
+const newIndex = Math.max(0, currentIndex - 1);
+scrollToCard(newIndex);
+});
+
+// Next button
+nextBtn.addEventListener(‘click’, () => {
+const currentIndex = getCurrentCardIndex();
+const newIndex = Math.min(skillCards.length - 1, currentIndex + 1);
+scrollToCard(newIndex);
+});
+
+// Update indicator on scroll
+carousel.addEventListener(‘scroll’, () => {
+const currentIndex = getCurrentCardIndex();
+updateActiveIndicator(currentIndex);
+});
+
+// Touch/swipe support for carousel
+let startX = 0;
+let scrollLeftStart = 0;
+
+carousel.addEventListener(‘touchstart’, (e) => {
+startX = e.touches[0].pageX;
+scrollLeftStart = carousel.scrollLeft;
+});
+
+carousel.addEventListener(‘touchmove’, (e) => {
+const x = e.touches[0].pageX;
+const walk = (startX - x) * 2;
+carousel.scrollLeft = scrollLeftStart + walk;
+});
+
+// Auto-rotate carousel (optional - uncomment to enable)
+/*
+let autoRotateInterval;
+
+function startAutoRotate() {
+autoRotateInterval = setInterval(() => {
+const currentIndex = getCurrentCardIndex();
+const newIndex = (currentIndex + 1) % skillCards.length;
+scrollToCard(newIndex);
+}, 5000);
+}
+
+function stopAutoRotate() {
+clearInterval(autoRotateInterval);
+}
+
+// Start auto-rotate
+startAutoRotate();
+
+// Pause on hover
+carousel.addEventListener(‘mouseenter’, stopAutoRotate);
+carousel.addEventListener(‘mouseleave’, startAutoRotate);
+
+// Pause on touch
+carousel.addEventListener(‘touchstart’, stopAutoRotate);
+*/
+
+// =========================
+// CONTACT FORM HANDLING
+// =========================
+const contactForm = document.getElementById(‘contactForm’);
+const formStatus = document.getElementById(‘formStatus’);
+
+contactForm.addEventListener(‘submit’, async (e) => {
+e.preventDefault();
+
+const formData = new FormData(contactForm);
+const name = formData.get(‘name’);
+const email = formData.get(‘email’);
+const message = formData.get(‘message’);
+
+// Create mailto link
+const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+const body = encodeURIComponent(
+`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+);
+const mailtoLink = `mailto:camzyxworld@gmail.com?subject=${subject}&body=${body}`;
+
+// Show success message
+formStatus.textContent = ‘Opening your email client…’;
+formStatus.className = ‘form-status success’;
+
+// Open mailto link
+setTimeout(() => {
+window.location.href = mailtoLink;
+
+```
+// Reset form after a delay
+setTimeout(() => {
+  contactForm.reset();
+  formStatus.textContent = 'Email client opened! If it didn\'t open automatically, please email me directly at camzyxworld@gmail.com';
+  
+  // Hide status after 5 seconds
+  setTimeout(() => {
+    formStatus.style.display = 'none';
+  }, 5000);
+}, 1000);
+```
+
+}, 500);
+});
+
+// Alternative: FormSubmit.co integration (uncomment if you want a backend service)
+/*
+contactForm.addEventListener(‘submit’, async (e) => {
+e.preventDefault();
+
+const formData = new FormData(contactForm);
+
+try {
+formStatus.textContent = ‘Sending message…’;
+formStatus.className = ‘form-status’;
+formStatus.style.display = ‘block’;
+
+```
+const response = await fetch('https://formsubmit.co/ajax/camzyxworld@gmail.com', {
+  method: 'POST',
+  body: formData
+});
+
+if (response.ok) {
+  formStatus.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+  formStatus.className = 'form-status success';
+  contactForm.reset();
+  
+  // Hide status after 5 seconds
+  setTimeout(() => {
+    formStatus.style.display = 'none';
+  }, 5000);
+} else {
+  throw new Error('Failed to send message');
+}
+```
+
+} catch (error) {
+formStatus.textContent = ‘Failed to send message. Please try emailing me directly at camzyxworld@gmail.com’;
+formStatus.className = ‘form-status error’;
+}
+});
+*/
+
+// =========================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// =========================
+document.querySelectorAll(‘a[href^=”#”]’).forEach(anchor => {
+anchor.addEventListener(‘click’, function (e) {
+const href = this.getAttribute(‘href’);
+
+```
+// Don't prevent default for empty hash or just "#"
+if (href === '#' || href === '') return;
+
+e.preventDefault();
+const target = document.querySelector(href);
+
+if (target) {
+  const headerOffset = 80;
+  const elementPosition = target.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
+}
+```
+
+});
+});
+
+// =========================
+// SCROLL ANIMATIONS
+// =========================
+const observerOptions = {
+threshold: 0.1,
+rootMargin: ‘0px 0px -50px 0px’
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.animation = ‘fadeInUp 0.8s ease both’;
+observer.unobserve(entry.target);
+}
+});
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll(’.glass-card, .experience-item, .stat-item’).forEach(el => {
+observer.observe(el);
+});
+
+// =========================
+// HEADER SCROLL EFFECT
+// =========================
+let lastScroll = 0;
+const header = document.querySelector(’.site-header’);
+
+window.addEventListener(‘scroll’, () => {
+const currentScroll = window.pageYOffset;
+
+if (currentScroll > 100) {
+header.style.boxShadow = ‘var(–shadow-md)’;
+} else {
+header.style.boxShadow = ‘none’;
+}
+
+lastScroll = currentScroll;
+});
+
+// =========================
+// DYNAMIC YEAR IN FOOTER
+// =========================
+document.getElementById(‘year’).textContent = new Date().getFullYear();
+
+// =========================
+// PRELOAD ANIMATIONS
+// =========================
+window.addEventListener(‘load’, () => {
+document.body.style.opacity = ‘1’;
+});
+
+// =========================
+// KEYBOARD NAVIGATION IMPROVEMENTS
+// =========================
+document.addEventListener(‘keydown’, (e) => {
+// Escape key closes mobile nav
+if (e.key === ‘Escape’ && nav.classList.contains(‘open’)) {
+nav.classList.remove(‘open’);
+navToggle.classList.remove(‘open’);
+navToggle.setAttribute(‘aria-expanded’, ‘false’);
+}
+
+// Arrow keys for carousel navigation
+if (document.activeElement.closest(’.skills-carousel-wrapper’)) {
+if (e.key === ‘ArrowLeft’) {
+e.preventDefault();
+prevBtn.click();
+} else if (e.key === ‘ArrowRight’) {
+e.preventDefault();
+nextBtn.click();
+}
+}
+});
+
+// =========================
+// LOADING STATE
+// =========================
+document.addEventListener(‘DOMContentLoaded’, () => {
+// Remove loading class if you add one
+document.body.classList.remove(‘loading’);
+
+// Initialize any other components
+console.log(‘Portfolio loaded successfully! 🚀’);
+});
