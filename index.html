@@ -1,11 +1,1249 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Japheth — Web3 On-Chain Researcher & Community Growth Strategist</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+```
+<style>
+```
+
+/* ====================================
+CSS VARIABLES & COLOR SCHEME
+==================================== */
+:root {
+/* Primary Colors */
+–primary-red: #8B3A3A;
+–primary-charcoal: #2F2F2F;
+–accent-orange: #C15F3C;
+–accent-teal: #0D3B46;
+–neutral-champagne: #F1E9DB;
+
+```
+/* Light Theme */
+--bg-main: var(--neutral-champagne);
+--bg-secondary: #FFFFFF;
+--text-primary: #2F2F2F;
+--text-secondary: #5A5A5A;
+--text-accent: #8B3A3A;
+
+/* Gradients */
+--gradient-hero: linear-gradient(135deg, #8B3A3A 0%, #C15F3C 40%, #F1E9DB 100%);
+--gradient-services: linear-gradient(180deg, #8B3A3A 0%, #C15F3C 50%, #F1E9DB 100%);
+--gradient-framework: linear-gradient(135deg, #C15F3C 0%, #F1E9DB 100%);
+
+/* Shadows */
+--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+--shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+/* Transitions */
+--transition: all 0.3s ease;
+```
+
+}
+
+[data-theme=“dark”] {
+–bg-main: #1a1a1a;
+–bg-secondary: #2F2F2F;
+–text-primary: #F1E9DB;
+–text-secondary: #C0C0C0;
+–text-accent: #C15F3C;
+}
+
+/* ====================================
+RESET & BASE STYLES
+==================================== */
+
+- {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: ‘Georgia’, ‘Times New Roman’, serif;
+background-color: var(–bg-main);
+color: var(–text-primary);
+line-height: 1.6;
+transition: var(–transition);
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+
+/* ====================================
+NAVIGATION
+==================================== */
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background: linear-gradient(90deg, #8B3A3A 0%, #C15F3C 100%);
+padding: 1rem 0;
+z-index: 1000;
+box-shadow: var(–shadow-md);
+}
+
+.nav-container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+font-size: 1.5rem;
+font-weight: 600;
+color: var(–neutral-champagne);
+text-decoration: none;
+letter-spacing: 0.5px;
+}
+
+.nav-menu {
+display: flex;
+list-style: none;
+align-items: center;
+gap: 2rem;
+}
+
+.nav-link {
+color: var(–neutral-champagne);
+text-decoration: none;
+font-size: 1rem;
+position: relative;
+transition: var(–transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+color: #FFFFFF;
+}
+
+.nav-link.active::after {
+content: ‘’;
+position: absolute;
+bottom: -5px;
+left: 0;
+width: 100%;
+height: 2px;
+background-color: var(–neutral-champagne);
+}
+
+.contact-btn {
+background-color: var(–accent-teal);
+padding: 0.5rem 1.5rem;
+border-radius: 8px;
+color: var(–neutral-champagne) !important;
+}
+
+.contact-btn:hover {
+background-color: #0A2D35;
+transform: translateY(-2px);
+}
+
+.theme-toggle {
+background: transparent;
+border: 2px solid var(–neutral-champagne);
+color: var(–neutral-champagne);
+width: 40px;
+height: 40px;
+border-radius: 50%;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: var(–transition);
+}
+
+.theme-toggle:hover {
+background-color: rgba(241, 233, 219, 0.1);
+transform: rotate(20deg);
+}
+
+.mobile-menu-toggle {
+display: none;
+flex-direction: column;
+gap: 5px;
+background: transparent;
+border: none;
+cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+width: 25px;
+height: 3px;
+background-color: var(–neutral-champagne);
+transition: var(–transition);
+}
+
+/* ====================================
+SECTION 1: HOME
+==================================== */
+.home-section {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+background: var(–gradient-hero);
+padding: 6rem 0 4rem;
+position: relative;
+overflow: hidden;
+}
+
+.home-section::before {
+content: ‘’;
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(circle at 30% 50%, rgba(193, 95, 60, 0.3) 0%, transparent 50%);
+pointer-events: none;
+}
+
+.home-content {
+text-align: center;
+position: relative;
+z-index: 1;
+}
+
+.profile-image-wrapper {
+margin: 0 auto 2rem;
+width: 400px;
+height: 400px;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.profile-image {
+width: 100%;
+height: 100%;
+border-radius: 50%;
+object-fit: cover;
+border: 8px solid var(–neutral-champagne);
+box-shadow:
+0 0 0 15px var(–primary-charcoal),
+0 0 0 23px var(–accent-orange),
+0 0 60px rgba(0, 0, 0, 0.3);
+animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+}
+
+.status-badge {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background-color: rgba(255, 255, 255, 0.9);
+padding: 0.5rem 1.5rem;
+border-radius: 25px;
+font-size: 0.9rem;
+color: var(–primary-charcoal);
+margin-bottom: 2rem;
+box-shadow: var(–shadow-sm);
+}
+
+.status-dot {
+width: 10px;
+height: 10px;
+background-color: #4CAF50;
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.5; }
+}
+
+.more-options {
+font-weight: bold;
+color: var(–text-secondary);
+}
+
+.main-heading {
+font-size: 4rem;
+font-weight: 400;
+font-style: italic;
+color: var(–primary-charcoal);
+margin: 1rem 0;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 2rem;
+}
+
+.decorative-line {
+width: 80px;
+height: 2px;
+background-color: var(–primary-charcoal);
+display: inline-block;
+}
+
+.subtitle {
+font-size: 1.3rem;
+color: var(–primary-charcoal);
+margin-bottom: 1rem;
+font-weight: 500;
+}
+
+.description {
+font-size: 1.1rem;
+color: var(–text-primary);
+max-width: 800px;
+margin: 0 auto 2rem;
+line-height: 1.8;
+}
+
+.cta-button-wrapper {
+margin: 2rem 0;
+}
+
+.cta-button {
+display: inline-block;
+background-color: var(–accent-teal);
+color: var(–neutral-champagne);
+padding: 1rem 3rem;
+border-radius: 12px;
+text-decoration: none;
+font-size: 1.1rem;
+font-weight: 500;
+box-shadow: var(–shadow-md);
+transition: var(–transition);
+}
+
+.cta-button:hover {
+background-color: #0A2D35;
+transform: translateY(-3px);
+box-shadow: var(–shadow-lg);
+}
+
+.social-links {
+display: flex;
+gap: 1.5rem;
+justify-content: center;
+margin-top: 2rem;
+}
+
+.social-links a {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.9);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(–primary-charcoal);
+font-size: 1.3rem;
+transition: var(–transition);
+box-shadow: var(–shadow-sm);
+}
+
+.social-links a:hover {
+background-color: var(–accent-teal);
+color: var(–neutral-champagne);
+transform: translateY(-5px);
+}
+
+/* ====================================
+SECTION 2: ABOUT
+==================================== */
+.about-section {
+padding: 6rem 0;
+background-color: var(–bg-main);
+position: relative;
+overflow: hidden;
+}
+
+.section-header {
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.section-label {
+display: inline-block;
+color: var(–accent-orange);
+font-size: 0.9rem;
+text-transform: uppercase;
+letter-spacing: 2px;
+margin-bottom: 0.5rem;
+}
+
+.section-title {
+font-size: 2.5rem;
+color: var(–text-primary);
+margin-bottom: 1rem;
+}
+
+.about-content {
+position: relative;
+}
+
+.about-grid {
+display: grid;
+grid-template-columns: 2fr 1fr;
+gap: 3rem;
+align-items: start;
+}
+
+.about-text p {
+margin-bottom: 1.5rem;
+font-size: 1.05rem;
+line-height: 1.8;
+color: var(–text-primary);
+}
+
+.about-intro {
+font-size: 1.1rem;
+}
+
+.about-stats {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.stat-card {
+background: linear-gradient(135deg, var(–accent-orange), var(–accent-teal));
+padding: 2rem;
+border-radius: 15px;
+text-align: center;
+box-shadow: var(–shadow-md);
+transition: var(–transition);
+}
+
+.stat-card:hover {
+transform: translateY(-5px);
+box-shadow: var(–shadow-lg);
+}
+
+.stat-number {
+font-size: 2.5rem;
+font-weight: bold;
+color: var(–neutral-champagne);
+margin-bottom: 0.5rem;
+}
+
+.stat-label {
+font-size: 1rem;
+color: var(–neutral-champagne);
+}
+
+.about-image-overlay {
+position: absolute;
+right: -100px;
+bottom: -50px;
+opacity: 0.15;
+pointer-events: none;
+z-index: 0;
+}
+
+.about-watermark {
+width: 500px;
+height: auto;
+object-fit: contain;
+filter: grayscale(50%);
+mix-blend-mode: multiply;
+}
+
+/* ====================================
+SECTION 3: SKILLS & SERVICES
+==================================== */
+.services-section {
+padding: 6rem 0;
+background: var(–gradient-services);
+position: relative;
+}
+
+.services-hero {
+display: grid;
+grid-template-columns: 1fr 1.5fr;
+gap: 3rem;
+align-items: center;
+margin-bottom: 4rem;
+}
+
+.services-profile {
+display: flex;
+justify-content: center;
+}
+
+.services-image-wrapper {
+width: 300px;
+height: 300px;
+position: relative;
+}
+
+.services-profile-image {
+width: 100%;
+height: 100%;
+border-radius: 50%;
+object-fit: cover;
+border: 8px solid var(–neutral-champagne);
+box-shadow:
+0 0 0 12px var(–primary-charcoal),
+0 0 0 18px var(–accent-orange),
+0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.services-intro {
+color: var(–neutral-champagne);
+}
+
+.section-title-large {
+font-size: 3.5rem;
+font-weight: 400;
+color: var(–primary-charcoal);
+margin-bottom: 1.5rem;
+display: flex;
+align-items: center;
+gap: 1.5rem;
+}
+
+.services-description {
+font-size: 1.1rem;
+line-height: 1.8;
+color: var(–text-primary);
+}
+
+.services-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 2rem;
+margin-bottom: 3rem;
+}
+
+.service-card {
+background-color: rgba(255, 255, 255, 0.95);
+padding: 2.5rem;
+border-radius: 20px;
+box-shadow: var(–shadow-md);
+transition: var(–transition);
+}
+
+.service-card:hover {
+transform: translateY(-10px);
+box-shadow: var(–shadow-lg);
+}
+
+.service-icon {
+width: 60px;
+height: 60px;
+background-color: var(–accent-teal);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 1.5rem;
+}
+
+.service-icon i {
+font-size: 1.8rem;
+color: var(–neutral-champagne);
+}
+
+.service-title {
+font-size: 1.5rem;
+color: var(–text-accent);
+margin-bottom: 1rem;
+line-height: 1.4;
+}
+
+.service-description {
+font-size: 1rem;
+color: var(–text-secondary);
+margin-bottom: 1.5rem;
+line-height: 1.6;
+}
+
+.service-link {
+color: var(–primary-charcoal);
+text-decoration: none;
+font-weight: 500;
+transition: var(–transition);
+}
+
+.service-link:hover {
+color: var(–accent-teal);
+}
+
+.services-footer {
+background-color: var(–primary-charcoal);
+padding: 2rem;
+border-radius: 15px;
+text-align: center;
+color: var(–neutral-champagne);
+}
+
+.services-footer p {
+font-size: 1.05rem;
+line-height: 1.8;
+}
+
+/* ====================================
+SECTION 4: FRAMEWORK
+==================================== */
+.framework-section {
+padding: 6rem 0;
+background: var(–gradient-framework);
+position: relative;
+overflow: hidden;
+}
+
+.framework-header {
+text-align: center;
+max-width: 900px;
+margin: 0 auto 4rem;
+}
+
+.framework-badge {
+display: inline-block;
+background-color: var(–accent-orange);
+color: var(–neutral-champagne);
+padding: 0.5rem 2rem;
+border-radius: 25px;
+font-size: 1rem;
+margin-bottom: 1.5rem;
+}
+
+.framework-title {
+font-size: 3rem;
+color: var(–primary-charcoal);
+margin-bottom: 1.5rem;
+line-height: 1.3;
+}
+
+.framework-intro {
+font-size: 1.15rem;
+color: var(–text-primary);
+margin-bottom: 1rem;
+line-height: 1.8;
+}
+
+.framework-description {
+font-size: 1.05rem;
+color: var(–text-secondary);
+line-height: 1.8;
+}
+
+.framework-visual {
+display: flex;
+justify-content: center;
+margin: 4rem 0;
+}
+
+.framework-circle {
+width: 500px;
+height: 500px;
+position: relative;
+border-radius: 50%;
+background: linear-gradient(135deg, var(–accent-orange), var(–accent-teal));
+padding: 30px;
+box-shadow: 0 0 80px rgba(193, 95, 60, 0.4);
+animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+
+.framework-element {
+position: absolute;
+width: 80px;
+height: 80px;
+background-color: var(–accent-teal);
+border-radius: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: var(–shadow-md);
+animation: rotate 30s linear infinite reverse;
+}
+
+.framework-element i {
+font-size: 2rem;
+color: var(–neutral-champagne);
+}
+
+.framework-element.trust {
+top: -20px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.framework-element.engagement {
+top: 80px;
+right: 20px;
+}
+
+.framework-element.growth {
+right: -20px;
+top: 50%;
+transform: translateY(-50%);
+}
+
+.framework-element.collaboration {
+bottom: 80px;
+right: 20px;
+}
+
+.framework-element.security {
+bottom: -20px;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.framework-element.rewards {
+top: 80px;
+left: 20px;
+}
+
+.framework-center {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 200px;
+height: 200px;
+border-radius: 50%;
+background: radial-gradient(circle, #FFA500, #FF6B35);
+box-shadow: 0 0 60px rgba(255, 165, 0, 0.8);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.center-glow {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+background: radial-gradient(circle, #FFEB3B, transparent);
+animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+0%, 100% { opacity: 0.5; transform: scale(1); }
+50% { opacity: 1; transform: scale(1.1); }
+}
+
+.framework-cta {
+text-align: center;
+margin-top: 3rem;
+}
+
+.framework-button {
+display: inline-block;
+background-color: var(–accent-teal);
+color: var(–neutral-champagne);
+padding: 1rem 3rem;
+border-radius: 12px;
+text-decoration: none;
+font-size: 1.1rem;
+font-weight: 500;
+box-shadow: var(–shadow-md);
+transition: var(–transition);
+}
+
+.framework-button:hover {
+background-color: #0A2D35;
+transform: translateY(-3px);
+box-shadow: var(–shadow-lg);
+}
+
+/* ====================================
+SECTION 5: EXPERIENCE & PROJECTS
+==================================== */
+.experience-section {
+padding: 6rem 0;
+background-color: var(–neutral-champagne);
+}
+
+.experience-intro {
+max-width: 900px;
+margin: 0 auto 3rem;
+text-align: center;
+}
+
+.experience-intro p {
+font-size: 1.05rem;
+line-height: 1.8;
+color: var(–text-primary);
+}
+
+.experience-grid {
+display: grid;
+grid-template-columns: 1.2fr 1fr;
+gap: 3rem;
+margin-top: 3rem;
+}
+
+.column-title {
+font-size: 1.8rem;
+color: var(–text-accent);
+margin-bottom: 1.5rem;
+padding-bottom: 0.5rem;
+border-bottom: 3px solid var(–accent-orange);
+}
+
+.column-intro {
+font-size: 1rem;
+color: var(–text-secondary);
+margin-bottom: 2rem;
+line-height: 1.6;
+}
+
+.experience-list {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+}
+
+.experience-item {
+background-color: var(–bg-secondary);
+padding: 1.5rem;
+border-radius: 12px;
+border-left: 4px solid var(–accent-teal);
+box-shadow: var(–shadow-sm);
+transition: var(–transition);
+}
+
+.experience-item:hover {
+transform: translateX(5px);
+box-shadow: var(–shadow-md);
+}
+
+.experience-header h4 {
+font-size: 1.2rem;
+color: var(–text-accent);
+margin-bottom: 0.3rem;
+}
+
+.formerly {
+font-size: 0.9rem;
+color: var(–text-secondary);
+font-weight: normal;
+}
+
+.role {
+font-size: 0.95rem;
+color: var(–text-secondary);
+}
+
+.status, .category {
+display: inline-block;
+padding: 0.3rem 1rem;
+border-radius: 20px;
+font-size: 0.85rem;
+margin-top: 0.5rem;
+}
+
+.status.current {
+background-color: var(–accent-teal);
+color: var(–neutral-champagne);
+}
+
+.category {
+background-color: var(–accent-orange);
+color: var(–neutral-champagne);
+}
+
+.experience-note {
+font-size: 0.95rem;
+font-style: italic;
+color: var(–text-secondary);
+margin-top: 1.5rem;
+padding: 1rem;
+background-color: rgba(193, 95, 60, 0.1);
+border-radius: 8px;
+}
+
+.project-cards {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+.project-card {
+background: linear-gradient(135deg, var(–accent-orange), var(–accent-teal));
+padding: 2rem;
+border-radius: 15px;
+display: flex;
+gap: 1rem;
+box-shadow: var(–shadow-md);
+transition: var(–transition);
+}
+
+.project-card:hover {
+transform: translateY(-5px);
+box-shadow: var(–shadow-lg);
+}
+
+.project-icon {
+font-size: 2rem;
+color: var(–neutral-champagne);
+}
+
+.project-content h4 {
+font-size: 1.3rem;
+color: var(–neutral-champagne);
+margin-bottom: 0.3rem;
+}
+
+.project-role {
+font-size: 0.9rem;
+color: rgba(241, 233, 219, 0.8);
+display: block;
+margin-bottom: 0.8rem;
+}
+
+.project-link {
+color: var(–neutral-champagne);
+text-decoration: none;
+font-weight: 500;
+transition: var(–transition);
+}
+
+.project-link:hover {
+text-decoration: underline;
+}
+
+/* ====================================
+SECTION 6: COLLABORATION
+==================================== */
+.collaboration-section {
+padding: 6rem 0;
+background: linear-gradient(135deg, var(–primary-charcoal) 0%, var(–accent-teal) 100%);
+}
+
+.collaboration-content {
+max-width: 800px;
+margin: 0 auto;
+}
+
+.collaboration-header {
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.collaboration-header .section-label {
+color: var(–accent-orange);
+}
+
+.collaboration-header .section-title {
+color: var(–neutral-champagne);
+}
+
+.collaboration-description {
+font-size: 1.1rem;
+color: rgba(241, 233, 219, 0.9);
+line-height: 1.8;
+}
+
+.collaboration-form {
+background-color: rgba(255, 255, 255, 0.1);
+padding: 2.5rem;
+border-radius: 20px;
+backdrop-filter: blur(10px);
+}
+
+.form-group {
+margin-bottom: 1.5rem;
+}
+
+.form-group label {
+display: block;
+color: var(–neutral-champagne);
+margin-bottom: 0.5rem;
+font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+width: 100%;
+padding: 0.8rem;
+border: 2px solid rgba(241, 233, 219, 0.3);
+background-color: rgba(255, 255, 255, 0.05);
+color: var(–neutral-champagne);
+border-radius: 8px;
+font-size: 1rem;
+transition: var(–transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: var(–accent-orange);
+background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submit-button {
+width: 100%;
+padding: 1rem;
+background-color: var(–accent-orange);
+color: var(–neutral-champagne);
+border: none;
+border-radius: 10px;
+font-size: 1.1rem;
+font-weight: 500;
+cursor: pointer;
+transition: var(–transition);
+}
+
+.submit-button:hover {
+background-color: #A84F30;
+transform: translateY(-2px);
+box-shadow: var(–shadow-md);
+}
+
+/* ====================================
+SECTION 7: CONTACT
+==================================== */
+.contact-section {
+padding: 6rem 0;
+background-color: var(–bg-main);
+}
+
+.contact-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+margin-top: 3rem;
+}
+
+.contact-card {
+background-color: var(–bg-secondary);
+padding: 2rem;
+border-radius: 15px;
+text-align: center;
+text-decoration: none;
+color: var(–text-primary);
+box-shadow: var(–shadow-sm);
+transition: var(–transition);
+}
+
+.contact-card:hover {
+transform: translateY(-8px);
+box-shadow: var(–shadow-md);
+background: linear-gradient(135deg, var(–accent-orange), var(–accent-teal));
+color: var(–neutral-champagne);
+}
+
+.contact-card i {
+font-size: 2.5rem;
+margin-bottom: 1rem;
+color: var(–accent-teal);
+transition: var(–transition);
+}
+
+.contact-card:hover i {
+color: var(–neutral-champagne);
+}
+
+.contact-card h3 {
+font-size: 1.2rem;
+margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+font-size: 0.95rem;
+color: var(–text-secondary);
+}
+
+.contact-card:hover p {
+color: rgba(241, 233, 219, 0.9);
+}
+
+/* ====================================
+FOOTER
+==================================== */
+.footer {
+background-color: var(–primary-charcoal);
+color: var(–neutral-champagne);
+padding: 3rem 0 1rem;
+}
+
+.footer-content {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 2rem;
+}
+
+.footer-brand h3 {
+font-size: 1.5rem;
+margin-bottom: 0.5rem;
+}
+
+.footer-brand p {
+color: rgba(241, 233, 219, 0.7);
+}
+
+.footer-links {
+display: flex;
+gap: 2rem;
+}
+
+.footer-links a {
+color: var(–neutral-champagne);
+text-decoration: none;
+transition: var(–transition);
+}
+
+.footer-links a:hover {
+color: var(–accent-orange);
+}
+
+.footer-bottom {
+text-align: center;
+padding-top: 2rem;
+border-top: 1px solid rgba(241, 233, 219, 0.2);
+}
+
+.footer-bottom p {
+color: rgba(241, 233, 219, 0.7);
+}
+
+/* ====================================
+RESPONSIVE DESIGN
+==================================== */
+@media (max-width: 968px) {
+.nav-menu {
+position: fixed;
+left: -100%;
+top: 70px;
+flex-direction: column;
+background: linear-gradient(180deg, #8B3A3A 0%, #C15F3C 100%);
+width: 100%;
+text-align: center;
+transition: 0.3s;
+box-shadow: var(–shadow-md);
+padding: 2rem 0;
+}
+
+```
+.nav-menu.active {
+    left: 0;
+}
+
+.mobile-menu-toggle {
+    display: flex;
+}
+
+.profile-image-wrapper {
+    width: 300px;
+    height: 300px;
+}
+
+.main-heading {
+    font-size: 3rem;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.decorative-line {
+    width: 60px;
+}
+
+.services-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.section-title-large {
+    font-size: 2.5rem;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.services-grid {
+    grid-template-columns: 1fr;
+}
+
+.framework-circle {
+    width: 350px;
+    height: 350px;
+}
+
+.framework-element {
+    width: 60px;
+    height: 60px;
+}
+
+.framework-element i {
+    font-size: 1.5rem;
+}
+
+.experience-grid {
+    grid-template-columns: 1fr;
+}
+
+.about-grid {
+    grid-template-columns: 1fr;
+}
+
+.footer-content {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+}
+```
+
+}
+
+@media (max-width: 640px) {
+.profile-image-wrapper {
+width: 250px;
+height: 250px;
+}
+
+```
+.main-heading {
+    font-size: 2.5rem;
+}
+
+.section-title {
+    font-size: 2rem;
+}
+
+.framework-circle {
+    width: 280px;
+    height: 280px;
+}
+
+.framework-element {
+    width: 50px;
+    height: 50px;
+}
+
+.contact-grid {
+    grid-template-columns: 1fr;
+}
+```
+
+}
+</style>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -117,7 +1355,7 @@
         <div class="services-hero">
             <div class="services-profile">
                 <div class="services-image-wrapper">
-                    <img src="docs/assets/IMG_8526.png" alt="Japheth working" class="services-profile-image">
+                    <img src="docs/assets/IMG_8242.jpeg" alt="Japheth working" class="services-profile-image">
                 </div>
             </div>
             <div class="services-intro">
@@ -393,8 +1631,237 @@
     </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
 ```
+
+// ====================================
+// THEME TOGGLE
+// ====================================
+const themeToggle = document.querySelector(’.theme-toggle’);
+const body = document.body;
+
+// Check for saved theme preference or default to light mode
+const currentTheme = localStorage.getItem(‘theme’) || ‘light’;
+body.setAttribute(‘data-theme’, currentTheme);
+
+// Update icon based on current theme
+updateThemeIcon(currentTheme);
+
+themeToggle.addEventListener(‘click’, () => {
+let theme = body.getAttribute(‘data-theme’);
+
+```
+if (theme === 'light') {
+    body.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    updateThemeIcon('dark');
+} else {
+    body.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    updateThemeIcon('light');
+}
+```
+
+});
+
+function updateThemeIcon(theme) {
+const icon = themeToggle.querySelector(‘i’);
+if (theme === ‘dark’) {
+icon.classList.remove(‘fa-moon’);
+icon.classList.add(‘fa-sun’);
+} else {
+icon.classList.remove(‘fa-sun’);
+icon.classList.add(‘fa-moon’);
+}
+}
+
+// ====================================
+// MOBILE MENU TOGGLE
+// ====================================
+const mobileMenuToggle = document.querySelector(’.mobile-menu-toggle’);
+const navMenu = document.querySelector(’.nav-menu’);
+
+mobileMenuToggle.addEventListener(‘click’, () => {
+navMenu.classList.toggle(‘active’);
+mobileMenuToggle.classList.toggle(‘active’);
+});
+
+// Close mobile menu when clicking on a nav link
+const navLinks = document.querySelectorAll(’.nav-link’);
+navLinks.forEach(link => {
+link.addEventListener(‘click’, () => {
+navMenu.classList.remove(‘active’);
+mobileMenuToggle.classList.remove(‘active’);
+});
+});
+
+// ====================================
+// SMOOTH SCROLLING
+// ====================================
+document.querySelectorAll(‘a[href^=”#”]’).forEach(anchor => {
+anchor.addEventListener(‘click’, function (e) {
+const href = this.getAttribute(‘href’);
+
+```
+    // Don't prevent default for empty href or just "#"
+    if (href === '#' || href === '') return;
+    
+    e.preventDefault();
+    const target = document.querySelector(href);
+    
+    if (target) {
+        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = target.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+});
+```
+
+});
+
+// ====================================
+// ACTIVE NAV LINK ON SCROLL
+// ====================================
+const sections = document.querySelectorAll(‘section[id]’);
+
+window.addEventListener(‘scroll’, () => {
+const scrollY = window.pageYOffset;
+
+```
+sections.forEach(section => {
+    const sectionHeight = section.offsetHeight;
+    const sectionTop = section.offsetTop - 100;
+    const sectionId = section.getAttribute('id');
+    const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+    
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach(link => link.classList.remove('active'));
+        if (navLink) {
+            navLink.classList.add('active');
+        }
+    }
+});
+```
+
+});
+
+// ====================================
+// FORM HANDLING
+// ====================================
+const contactForm = document.getElementById(‘contactForm’);
+
+contactForm.addEventListener(‘submit’, (e) => {
+e.preventDefault();
+
+```
+const formData = new FormData(contactForm);
+const name = formData.get('name');
+const email = formData.get('email');
+const message = formData.get('message');
+
+// Basic validation
+if (!name || !email || !message) {
+    alert('Please fill in all fields');
+    return;
+}
+
+// Email validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address');
+    return;
+}
+
+// Here you would typically send the form data to a server
+// For now, we'll just show a success message
+alert(`Thank you, ${name}! Your message has been received. I'll get back to you soon.`);
+
+// Reset form
+contactForm.reset();
+```
+
+});
+
+// ====================================
+// SCROLL REVEAL ANIMATIONS
+// ====================================
+const observerOptions = {
+threshold: 0.1,
+rootMargin: ‘0px 0px -50px 0px’
+};
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.style.opacity = ‘1’;
+entry.target.style.transform = ‘translateY(0)’;
+}
+});
+}, observerOptions);
+
+// Observe elements for fade-in animation
+const animateElements = document.querySelectorAll(’.service-card, .stat-card, .experience-item, .project-card, .contact-card’);
+animateElements.forEach(el => {
+el.style.opacity = ‘0’;
+el.style.transform = ‘translateY(30px)’;
+el.style.transition = ‘opacity 0.6s ease, transform 0.6s ease’;
+observer.observe(el);
+});
+
+// ====================================
+// NAVBAR BACKGROUND ON SCROLL
+// ====================================
+const navbar = document.querySelector(’.navbar’);
+
+window.addEventListener(‘scroll’, () => {
+if (window.scrollY > 50) {
+navbar.style.boxShadow = ‘0 4px 20px rgba(0, 0, 0, 0.3)’;
+} else {
+navbar.style.boxShadow = ‘0 4px 16px rgba(0, 0, 0, 0.15)’;
+}
+});
+
+// ====================================
+// PREVENT FRAMEWORK ROTATION ON MOBILE
+// ====================================
+if (window.innerWidth <= 768) {
+const frameworkCircle = document.querySelector(’.framework-circle’);
+if (frameworkCircle) {
+frameworkCircle.style.animation = ‘none’;
+}
+}
+
+// ====================================
+// SERVICE CARDS MODAL (OPTIONAL)
+// ====================================
+const serviceLinks = document.querySelectorAll(’.service-link’);
+
+serviceLinks.forEach(link => {
+link.addEventListener(‘click’, (e) => {
+e.preventDefault();
+const serviceCard = link.closest(’.service-card’);
+const serviceTitle = serviceCard.querySelector(’.service-title’).textContent;
+
+```
+    // You can implement a modal here to show more details
+    // For now, we'll just show an alert
+    alert(`More details about "${serviceTitle}" coming soon!`);
+});
+```
+
+});
+
+// ====================================
+// CONSOLE WELCOME MESSAGE
+// ====================================
+console.log(’%c👋 Welcome to Japheth's Portfolio!’, ‘font-size: 20px; font-weight: bold; color: #C15F3C;’);
+console.log(’%cBuilt with ❤️ using HTML, CSS, and JavaScript’, ‘font-size: 14px; color: #0D3B46;’);
+console.log(’%cInterested in working together? Let's connect!’, ‘font-size: 14px; color: #2F2F2F;’);
+</script>
 
 </body>
 </html>
