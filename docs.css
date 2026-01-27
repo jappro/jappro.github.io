@@ -1,1 +1,94 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.7;
+}
+
+.docs-container {
+  max-width: 860px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.docs-header {
+  margin-bottom: 50px;
+}
+
+.docs-header h1 {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.author {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.docs-section {
+  margin-bottom: 48px;
+}
+
+.docs-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.docs-section h3 {
+  font-size: 1.1rem;
+  margin: 20px 0 8px;
+}
+
+.docs-section p {
+  margin-bottom: 14px;
+}
+
+.docs-section ul {
+  margin-left: 20px;
+}
+
+.docs-section li {
+  margin-bottom: 6px;
+}
+
+.layer-desc {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.diagram-layer {
+  padding: 14px 16px;
+  border-left: 4px solid #000;
+  background: #f7f7f7;
+  font-weight: 500;
+}
+
+.closing {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 30px;
+}
+
+.signature {
+  margin-top: 16px;
+  font-weight: 600;
+}
