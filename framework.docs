@@ -78,7 +78,7 @@ body{font-family:Georgia,serif;background:var(--bg);color:var(--text);line-heigh
 <div class="intro">
 <h2>Why Community Is Infrastructure</h2>
 <p>Most Web3 communities fail not because the product is bad, but because the community was never designed to last.</p>
-<p>I believe community is not a chat group, not a hype engine, and not a temporary growth hack. A strong community is <strong>infrastructure</strong> — a living system that supports people, narratives, and value creation over time.</p>
+<p>I believe community is not a chat group, not a hype engine, and not a temporary growth hack. A strong community is <strong>"infrastructure"</strong> a living system that supports people, narratives, and value creation over time.</p>
 <p>This document explains how I think about community, how I design it, and how I help projects build communities that are trust-driven, resilient, and sustainable.</p>
 </div>
 
@@ -167,7 +167,7 @@ body{font-family:Georgia,serif;background:var(--bg);color:var(--text);line-heigh
 </ul>
 
 <h4>Narrative (The Story People Join)</h4>
-<p>People don't commit to products — they commit to stories.</p>
+<p>People don't commit to products, they commit to stories.</p>
 <p>A strong narrative explains:</p>
 <ul>
 <li>Where the project is coming from</li>
