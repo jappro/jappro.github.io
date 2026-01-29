@@ -2,355 +2,366 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community Philosophy & Framework | Japheth</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="docs.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Framework — Japheth's Philosophy & Architecture</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--pr:#8B3A3A;--pc:#1a1a1a;--ao:#C15F3C;--at:#0D3B46;--nc:#F1E9DB;--bg:#FAFAFA;--card:#FFF;--text:#1a1a1a;--text-light:#3a3a3a;--border:#E0E0E0;--accent:var(--ao)}
+[data-theme=dark]{--bg:#1a1a1a;--card:#2F2F2F;--text:#F1E9DB;--text-light:#C0C0C0;--border:#404040;--accent:var(--ao)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--text);line-height:1.8;transition:background .3s,color .3s}
+.container{max-width:900px;margin:0 auto;padding:2rem}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--at);text-decoration:none;margin-bottom:2rem;font-size:.95rem;transition:all .3s}
+.back-link:hover{transform:translateX(-5px);color:var(--ao)}
+.back-link i{font-size:.9rem}
+.theme-toggle{position:fixed;top:2rem;right:2rem;background:var(--card);border:2px solid var(--border);color:var(--text);width:50px;height:50px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:all .3s;z-index:100}
+.theme-toggle:hover{transform:rotate(20deg);box-shadow:0 6px 16px rgba(0,0,0,.15)}
+.header{text-align:center;padding:3rem 0;border-bottom:3px solid var(--accent);margin-bottom:3rem}
+.doc-title{font-size:2.8rem;color:var(--text);margin-bottom:.5rem;font-weight:400}
+.doc-subtitle{font-size:1.2rem;color:var(--text-light);font-style:italic;margin-bottom:1rem}
+.author{font-size:1rem;color:var(--accent);font-weight:500}
+.intro{background:linear-gradient(135deg,var(--ao),var(--at));color:var(--nc);padding:2.5rem;border-radius:15px;margin-bottom:3rem;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.intro h2{font-size:1.8rem;margin-bottom:1rem;font-weight:400}
+.intro p{font-size:1.05rem;line-height:1.8;margin-bottom:1rem}
+.intro p:last-child{margin-bottom:0}
+.section{margin-bottom:4rem}
+.section-title{font-size:2rem;color:var(--accent);margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);font-weight:400}
+.subsection{margin-bottom:2.5rem}
+.subsection-title{font-size:1.5rem;color:var(--text);margin-bottom:1rem;font-weight:500}
+.subsection-subtitle{font-size:1.2rem;color:var(--text-light);font-style:italic;margin-bottom:.8rem}
+.content p{margin-bottom:1.2rem;font-size:1.05rem;color:var(--text)}
+.content ul{margin:1.5rem 0;padding-left:2rem}
+.content ul li{margin-bottom:.8rem;color:var(--text-light);font-size:1rem}
+.content ul li::marker{color:var(--accent)}
+.content h4{color:var(--accent);margin-top:1.5rem;margin-bottom:.8rem;font-size:1.2rem}
+.quote{background:var(--card);border-left:4px solid var(--accent);padding:1.5rem;margin:2rem 0;font-style:italic;color:var(--text-light);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.diagram{background:var(--card);padding:2rem;border-radius:12px;margin:2rem 0;box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center}
+.diagram-title{font-size:1.2rem;color:var(--accent);margin-bottom:1.5rem;font-weight:500}
+.layer-stack{display:flex;flex-direction:column;gap:1rem;max-width:600px;margin:0 auto}
+.layer{background:linear-gradient(135deg,var(--ao),var(--at));color:var(--nc);padding:1.5rem;border-radius:10px;text-align:center;position:relative;transition:all .3s}
+.layer:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.layer-number{position:absolute;top:-10px;left:20px;background:var(--at);color:var(--nc);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.9rem;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.layer-title{font-size:1.3rem;font-weight:500;margin-bottom:.5rem}
+.layer-subtitle{font-size:.95rem;opacity:.9}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0}
+.principle-card{background:var(--card);padding:1.8rem;border-radius:12px;border-top:4px solid var(--accent);box-shadow:0 4px 12px rgba(0,0,0,.08);transition:all .3s}
+.principle-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.principle-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--ao),var(--at));color:var(--nc);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem}
+.principle-title{font-size:1.2rem;color:var(--text);margin-bottom:.8rem;font-weight:500}
+.principle-text{font-size:.95rem;color:var(--text-light);line-height:1.6}
+.divider{height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:4rem 0}
+.footer-section{background:var(--card);padding:2.5rem;border-radius:12px;text-align:center;margin-top:4rem;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.footer-section h2{font-size:1.8rem;color:var(--accent);margin-bottom:1rem}
+.footer-section p{font-size:1.05rem;color:var(--text);margin-bottom:1.5rem}
+.cta-button{display:inline-block;background:var(--at);color:var(--nc);padding:1rem 2.5rem;border-radius:10px;text-decoration:none;font-size:1.1rem;font-weight:500;box-shadow:0 4px 12px rgba(0,0,0,.15);transition:all .3s}
+.cta-button:hover{background:#0A2D35;transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
+@media (max-width:768px){.container{padding:1.5rem}.doc-title{font-size:2rem}.section-title{font-size:1.6rem}.principles{grid-template-columns:1fr}.theme-toggle{top:1rem;right:1rem;width:45px;height:45px}}
+</style>
 </head>
-
 <body>
-  <nav class="docs-nav">
-    <div class="docs-nav-inner">
-      <a href="index.html" class="back-link">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-        Back to Portfolio
-      </a>
-      <button id="themeToggleDocs" class="theme-toggle-docs" aria-label="Toggle theme">
-        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="5"></circle>
-          <line x1="12" y1="1" x2="12" y2="3"></line>
-          <line x1="12" y1="21" x2="12" y2="23"></line>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-          <line x1="1" y1="12" x2="3" y2="12"></line>
-          <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
-    </div>
-  </nav>
 
-  <main class="docs-container">
+<button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
 
-```
-<!-- Header -->
-<header class="docs-header">
-  <div class="docs-badge">Community Architecture</div>
-  <h1>My Community Philosophy & Framework</h1>
-  <p class="subtitle">
-    Building trust-driven, resilient Web3 communities that last beyond hype cycles.
-  </p>
-  <p class="author">By Japheth — Community Architect & On-Chain Researcher</p>
+<div class="container">
+
+<a href="index.html" class="back-link">
+<i class="fas fa-arrow-left"></i> Back to Portfolio
+</a>
+
+<header class="header">
+<h1 class="doc-title">My Community Philosophy & Framework</h1>
+<p class="doc-subtitle">How I Architect Resilient Web3 Communities</p>
 </header>
 
-<!-- Intro -->
-<section class="docs-section">
-  <h2>Introduction: Why Community Is Infrastructure</h2>
-  <p>
-    Most Web3 communities fail not because the product is bad, but because the
-    community was never designed to last.
-  </p>
-  <p>
-    I believe community is not a chat group, not a hype engine, and not a temporary
-    growth hack. A strong community is <strong>infrastructure</strong> — a living
-    system that supports people, narratives, and value creation over time.
-  </p>
-  <p>
-    This document explains how I think about community, how I design it, and how I
-    help projects build communities that are trust-driven, resilient, and sustainable.
-  </p>
+<div class="intro">
+<h2>Why Community Is Infrastructure</h2>
+<p>Most Web3 communities fail not because the product is bad, but because the community was never designed to last.</p>
+<p>I believe community is not a chat group, not a hype engine, and not a temporary growth hack. A strong community is <strong>infrastructure</strong> — a living system that supports people, narratives, and value creation over time.</p>
+<p>This document explains how I think about community, how I design it, and how I help projects build communities that are trust-driven, resilient, and sustainable.</p>
+</div>
+
+<section class="section">
+<h2 class="section-title">Core Philosophy</h2>
+
+<div class="principles">
+<div class="principle-card">
+<div class="principle-icon"><i class="fas fa-layer-group"></i></div>
+<h3 class="principle-title">Value → Quality → Scale</h3>
+<p class="principle-text">A community without real value will collapse, no matter how polished it looks. Scale only matters after value and quality are proven.</p>
+</div>
+
+<div class="principle-card">
+<div class="principle-icon"><i class="fas fa-handshake"></i></div>
+<h3 class="principle-title">Trust Is Mechanical</h3>
+<p class="principle-text">Trust is not emotional — it is mechanical. Communities thrive when members can predict how decisions are made, rules are enforced, and contributions are rewarded.</p>
+</div>
+
+<div class="principle-card">
+<div class="principle-icon"><i class="fas fa-shield-alt"></i></div>
+<h3 class="principle-title">Design for Resilience</h3>
+<p class="principle-text">Strong communities learn from stress, adapt rules, and refine culture. They evolve through pressure, not collapse under it.</p>
+</div>
+</div>
+
+<div class="content">
+<p>I design communities that:</p>
+<ul>
+<li>Solve real problems</li>
+<li>Reward meaningful participation</li>
+<li>Grow intentionally, not accidentally</li>
+</ul>
+</div>
 </section>
 
-<!-- Core Philosophy -->
-<section class="docs-section">
-  <h2>Core Philosophy</h2>
+<div class="divider"></div>
 
-  <div class="principle-card">
-    <div class="principle-number">01</div>
-    <div class="principle-content">
-      <h3>Value Comes Before Quality, Quality Comes Before Scale</h3>
-      <p>
-        A community without real value will collapse, no matter how polished it looks.
-        A high-quality system built around the wrong value is still useless.
-      </p>
-      <p>
-        Scale only matters after value and quality are proven.
-      </p>
-    </div>
-  </div>
+<section class="section">
+<h2 class="section-title">The Community Architecture Framework</h2>
 
-  <div class="principle-card">
-    <div class="principle-number">02</div>
-    <div class="principle-content">
-      <h3>Trust Is the True Currency of Community</h3>
-      <p>
-        Trust is not emotional — it is mechanical.
-      </p>
-      <p>
-        Communities thrive when members can predict how decisions are made, how rules
-        are enforced, and how contributions are rewarded.
-      </p>
-    </div>
-  </div>
+<div class="diagram">
+<h3 class="diagram-title">Four Architectural Layers</h3>
+<div class="layer-stack">
+<div class="layer">
+<div class="layer-number">1</div>
+<div class="layer-title">Foundation</div>
+<div class="layer-subtitle">Purpose • Values • Narrative</div>
+</div>
+<div class="layer">
+<div class="layer-number">2</div>
+<div class="layer-title">Structure</div>
+<div class="layer-subtitle">Roles • Systems • Flow</div>
+</div>
+<div class="layer">
+<div class="layer-number">3</div>
+<div class="layer-title">Trust Engine</div>
+<div class="layer-subtitle">Predictability • Fairness • Feedback</div>
+</div>
+<div class="layer">
+<div class="layer-number">4</div>
+<div class="layer-title">Resilience</div>
+<div class="layer-subtitle">Anti-Hype • Anti-Burnout • Anti-Fragile</div>
+</div>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Layer 1: Foundation</h3>
+<p class="subsection-subtitle">Purpose • Values • Narrative</p>
+
+<div class="content">
+<p>Every strong community begins with clarity.</p>
+
+<h4>Purpose (Why We Exist)</h4>
+<p>A community must answer, clearly and repeatedly: <em>"What problem are we here to solve, and for whom?"</em></p>
+<p>If members cannot explain the purpose in one sentence, the foundation is weak.</p>
+
+<h4>Values (What We Protect)</h4>
+<p>Values are not words on a page. They are the standards enforced especially when it's uncomfortable.</p>
+<p>I help projects define and enforce values that protect:</p>
+<ul>
+<li>Integrity over hype</li>
+<li>Contribution over entitlement</li>
+<li>Learning over noise</li>
+</ul>
+
+<h4>Narrative (The Story People Join)</h4>
+<p>People don't commit to products — they commit to stories.</p>
+<p>A strong narrative explains:</p>
+<ul>
+<li>Where the project is coming from</li>
+<li>Where it's going</li>
+<li>Why it matters now</li>
+</ul>
+<p>Narratives evolve, but they must always align with reality.</p>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Layer 2: Structure</h3>
+<p class="subsection-subtitle">Roles • Systems • Flow</p>
+
+<div class="quote">
+Energy without structure becomes chaos.
+</div>
+
+<div class="content">
+<h4>Role Design (People Need Identity)</h4>
+<p>I design clear roles that give members ownership:</p>
+<ul>
+<li>Learners</li>
+<li>Contributors</li>
+<li>Moderators</li>
+<li>Ambassadors</li>
+<li>Builders</li>
+</ul>
+<p>When people have identity, they stay. When they have ownership, they protect the community.</p>
+
+<h4>Contribution Path (From Lurker to Leader)</h4>
+<p>A community must intentionally guide members through stages:</p>
+<ul>
+<li>Observe</li>
+<li>Participate</li>
+<li>Contribute</li>
+<li>Lead</li>
+</ul>
+<p>If there is no visible growth path, engagement dies after the hype phase.</p>
+
+<h4>Governance Logic (Even When Informal)</h4>
+<p>Every community has power, either visible or hidden.</p>
+<p>To establish:</p>
+<ul>
+<li>Transparent decision-making</li>
+<li>Clear responsibility</li>
+<li>Healthy disagreement channels</li>
+</ul>
+<p>Good governance builds legitimacy.</p>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Layer 3: Trust Engine</h3>
+<p class="subsection-subtitle">Predictability • Fairness • Feedback</p>
+
+<div class="content">
+<p>This is where long-term communities are won.</p>
+
+<h4>Predictability (Consistency Builds Safety)</h4>
+<p>Members trust systems they can predict:</p>
+<ul>
+<li>Same rules</li>
+<li>Same enforcement</li>
+<li>Same communication standards</li>
+</ul>
+<div class="quote">
+Inconsistency destroys trust faster than mistakes.
+</div>
+
+<h4>Fairness (Equal Rules, Not Equal Outcomes)</h4>
+<p>People accept losses. They reject unfair processes.</p>
+<p>Ensure rules apply equally, and corrections are handled openly.</p>
+
+<h4>Feedback Loops (Listening With Action)</h4>
+<p>Feedback without action creates resentment.</p>
+<p>Design feedback systems where:</p>
+<ul>
+<li>Opinions are collected</li>
+<li>Responses are communicated</li>
+<li>Outcomes are visible</li>
+</ul>
+<p>This turns users into partners.</p>
+</div>
+</div>
+
+<div class="subsection">
+<h3 class="subsection-title">Layer 4: Resilience</h3>
+<p class="subsection-subtitle">Anti-Hype • Anti-Burnout • Anti-Fragile</p>
+
+<div class="content">
+<p>This is what makes a community last beyond cycles.</p>
+
+<h4>Anti-Hype Design</h4>
+<div class="quote">
+Hype attracts people. Structure keeps them.
+</div>
+<p>A strong community must function even when:</p>
+<ul>
+<li>No campaign is running</li>
+<li>No rewards are live</li>
+<li>No announcements are made</li>
+</ul>
+
+<h4>Anti-Burnout Systems</h4>
+<p>Burned-out moderators kill communities.</p>
+<p>Prioritize:</p>
+<ul>
+<li>Automation for repetitive tasks</li>
+<li>Clear boundaries for moderators</li>
+<li>Systems that reduce emotional labor</li>
+</ul>
+<p>Humans should focus on judgment, not exhaustion.</p>
+
+<h4>Anti-Fragility (Stronger Under Stress)</h4>
+<p>Market downturns, criticism, and conflict are tests.</p>
+<p>Strong communities:</p>
+<ul>
+<li>Learn from stress</li>
+<li>Adapt rules</li>
+<li>Refine culture</li>
+</ul>
+<p>Design communities to evolve through pressure, not collapse under it.</p>
+</div>
+</div>
+
 </section>
 
-<!-- Framework Diagram -->
-<section class="docs-section">
-  <h2>The Community Architecture Framework</h2>
+<div class="divider"></div>
 
-  <div class="framework-diagram">
-    <div class="layer-card layer-1">
-      <div class="layer-icon">🏗️</div>
-      <div class="layer-title">Layer 1 — Foundation</div>
-      <div class="layer-desc">Purpose • Values • Narrative</div>
-    </div>
-    <div class="layer-card layer-2">
-      <div class="layer-icon">⚙️</div>
-      <div class="layer-title">Layer 2 — Structure</div>
-      <div class="layer-desc">Roles • Systems • Flow</div>
-    </div>
-    <div class="layer-card layer-3">
-      <div class="layer-icon">🔒</div>
-      <div class="layer-title">Layer 3 — Trust Engine</div>
-      <div class="layer-desc">Predictability • Fairness • Feedback</div>
-    </div>
-    <div class="layer-card layer-4">
-      <div class="layer-icon">🛡️</div>
-      <div class="layer-title">Layer 4 — Resilience</div>
-      <div class="layer-desc">Anti-Hype • Anti-Burnout • Anti-Fragile</div>
-    </div>
-  </div>
+<section class="section">
+<h2 class="section-title">How I Apply This in Practice</h2>
+
+<div class="content">
+<p>I combine:</p>
+<ul>
+<li>On-chain research</li>
+<li>Community systems design</li>
+<li>Real-world operational discipline</li>
+</ul>
+
+<p>This allows me to:</p>
+<ul>
+<li>Align community behavior with product vision</li>
+<li>Reduce noise and speculation</li>
+<li>Build trust that compounds over time</li>
+</ul>
+
+<div class="quote">
+I don't chase short-term engagement. I architect communities that last.
+</div>
+</div>
 </section>
 
-<!-- Layer 1 -->
-<section class="docs-section">
-  <div class="layer-header">
-    <span class="layer-badge">Layer 1</span>
-    <h2>Foundation</h2>
-  </div>
-  <p class="layer-subtitle">Purpose • Values • Narrative</p>
+<div class="footer-section">
+<h2>Final Note</h2>
+<p>Community is not a role. It is not a Discord, TG channel or orther engagement platform. It is not a marketing trick.</p>
+<p><strong>Community is infrastructure.</strong></p>
+<p>When designed intentionally, it becomes one of the strongest assets a project can have.</p>
+<p style="margin-top:2rem;font-style:italic;color:var(--accent);font-size:1.1rem">That is the work I do.</p>
+<p style="margin-top:.5rem;font-size:1.1rem;font-weight:500">_japheth</p>
+<div style="margin-top:2rem">
+<a href="index.html#work" class="cta-button">Let's Build Together</a>
+</div>
+</div>
 
-  <div class="content-block">
-    <h3>Purpose — Why We Exist</h3>
-    <p>
-      A community must clearly answer: <em>"What problem are we here to solve, and for whom?"</em>
-    </p>
-    <p>
-      Without a clear purpose, communities become directionless discussion groups that depend entirely on hype to maintain activity.
-    </p>
-  </div>
+</div>
 
-  <div class="content-block">
-    <h3>Values — What We Protect</h3>
-    <p>
-      Values are enforced standards, not marketing words. They matter most when it's uncomfortable.
-    </p>
-    <p>
-      I help projects identify their core values and build systems that protect them, especially when growth pressure tempts compromise.
-    </p>
-  </div>
-
-  <div class="content-block">
-    <h3>Narrative — The Story People Join</h3>
-    <p>
-      People don't commit to products — they commit to stories. A strong narrative aligns vision with reality.
-    </p>
-    <p>
-      I work with projects to craft narratives that are honest, compelling, and grounded in actual on-chain mechanics.
-    </p>
-  </div>
-</section>
-
-<!-- Layer 2 -->
-<section class="docs-section">
-  <div class="layer-header">
-    <span class="layer-badge">Layer 2</span>
-    <h2>Structure</h2>
-  </div>
-  <p class="layer-subtitle">Roles • Systems • Flow</p>
-
-  <div class="content-block">
-    <h3>Role Design</h3>
-    <p>
-      Identity creates ownership. I design roles that allow members to grow from
-      participants into leaders.
-    </p>
-    <p>
-      Roles should reflect contribution, not arbitrary titles. The best communities have clear pathways for members to increase their impact.
-    </p>
-  </div>
-
-  <div class="contribution-path">
-    <div class="path-step">
-      <div class="step-number">1</div>
-      <div class="step-name">Observe</div>
-    </div>
-    <div class="path-arrow">→</div>
-    <div class="path-step">
-      <div class="step-number">2</div>
-      <div class="step-name">Participate</div>
-    </div>
-    <div class="path-arrow">→</div>
-    <div class="path-step">
-      <div class="step-number">3</div>
-      <div class="step-name">Contribute</div>
-    </div>
-    <div class="path-arrow">→</div>
-    <div class="path-step">
-      <div class="step-number">4</div>
-      <div class="step-name">Lead</div>
-    </div>
-  </div>
-
-  <div class="content-block">
-    <h3>Governance Logic</h3>
-    <p>
-      Every community has power. Healthy governance makes that power visible and accountable.
-    </p>
-    <p>
-      I help projects design governance that balances speed with fairness, ensuring decisions don't become bottlenecks or sources of resentment.
-    </p>
-  </div>
-</section>
-
-<!-- Layer 3 -->
-<section class="docs-section">
-  <div class="layer-header">
-    <span class="layer-badge">Layer 3</span>
-    <h2>Trust Engine</h2>
-  </div>
-  <p class="layer-subtitle">Predictability • Fairness • Feedback</p>
-
-  <div class="content-block">
-    <h3>Predictability</h3>
-    <p>
-      Consistency builds safety. Inconsistency destroys trust faster than mistakes.
-    </p>
-    <p>
-      Members need to know what to expect — from moderation, from leadership, from each other. I build systems that create predictable patterns of behavior.
-    </p>
-  </div>
-
-  <div class="content-block">
-    <h3>Fairness</h3>
-    <p>
-      People accept losses, but they reject unfair processes.
-    </p>
-    <p>
-      Fairness is not about equal outcomes — it's about transparent, consistent processes that everyone can understand and trust.
-    </p>
-  </div>
-
-  <div class="content-block">
-    <h3>Feedback Loops</h3>
-    <p>
-      Feedback must lead to visible action, or it becomes resentment.
-    </p>
-    <p>
-      I design feedback systems that capture community input and translate it into clear, communicated decisions — even when the answer is "no."
-    </p>
-  </div>
-</section>
-
-<!-- Layer 4 -->
-<section class="docs-section">
-  <div class="layer-header">
-    <span class="layer-badge">Layer 4</span>
-    <h2>Resilience</h2>
-  </div>
-  <p class="layer-subtitle">Anti-Hype • Anti-Burnout • Anti-Fragile</p>
-
-  <div class="content-block">
-    <h3>Anti-Hype Design</h3>
-    <p>
-      A strong community functions even when incentives disappear.
-    </p>
-    <p>
-      I help projects build engagement that isn't dependent on token prices, airdrop speculation, or temporary campaigns. Real communities stay active through bear markets.
-    </p>
-  </div>
-
-  <div class="content-block">
-    <h3>Anti-Burnout Systems</h3>
-    <p>
-      Moderators should focus on judgment, not exhaustion.
-    </p>
-    <p>
-      I design moderation systems that automate repetitive tasks, distribute workload fairly, and protect team mental health.
-    </p>
-  </div>
-
-  <div class="content-block">
-    <h3>Anti-Fragility</h3>
-    <p>
-      Strong communities evolve through stress rather than collapse under it.
-    </p>
-    <p>
-      Challenges reveal weaknesses. I help communities use conflict, criticism, and change as opportunities to strengthen their structure.
-    </p>
-  </div>
-</section>
-
-<!-- Closing -->
-<section class="docs-section closing">
-  <h2>Final Note</h2>
-  <p>
-    Community is not a Discord channel. It is infrastructure.
-  </p>
-  <p>
-    When designed intentionally, it becomes one of the strongest assets a project can have — more valuable than marketing, more durable than hype, and more resilient than any single leader.
-  </p>
-  <p>
-    This is how I approach community work. If this resonates with you, <a href="index.html#work">let's talk</a>.
-  </p>
-  <p class="signature">— Japheth</p>
-</section>
-```
-
-  </main>
-
-  <footer class="docs-footer">
-    <div class="docs-footer-content">
-      <p>© 2026 Japheth. All rights reserved.</p>
-      <a href="index.html">Back to Portfolio</a>
-    </div>
-  </footer>
-
-  <script>
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggleDocs');
-    const htmlElement = document.documentElement;
-
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    htmlElement.setAttribute('data-theme', currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const theme = htmlElement.getAttribute('data-theme');
-      const newTheme = theme === 'dark' ? 'light' : 'dark';
-      
-      htmlElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
+<script>
+const themeToggle=document.querySelector('.theme-toggle'),body=document.body,currentTheme=localStorage.getItem('theme')||'light';
+body.setAttribute('data-theme',currentTheme),updateThemeIcon(currentTheme);
+themeToggle.addEventListener('click',()=>{
+let theme=body.getAttribute('data-theme');
+if(theme==='light'){
+body.setAttribute('data-theme','dark');
+localStorage.setItem('theme','dark');
+updateThemeIcon('dark');
+}else{
+body.setAttribute('data-theme','light');
+localStorage.setItem('theme','light');
+updateThemeIcon('light');
+}
+});
+function updateThemeIcon(theme){
+const icon=themeToggle.querySelector('i');
+if(theme==='dark'){
+icon.classList.remove('fa-moon');
+icon.classList.add('fa-sun');
+}else{
+icon.classList.remove('fa-sun');
+icon.classList.add('fa-moon');
+}
+}
+</script>
 
 </body>
 </html>
