@@ -374,6 +374,9 @@ Skills & Services
 <button type="submit" class="submit-button" id="submitBtn">
 <span class="btn-text">Send Message</span>
 </button>
+<p style="text-align:center;font-size:0.85rem;color:rgba(241,233,219,0.6);margin-top:1rem;">
+Note: First submission may require email verification
+</p>
 </form>
 </div>
 </div>
@@ -489,22 +492,39 @@ contactForm.addEventListener('submit', async function(e) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<span class="btn-text">Send Message</span>';
         
+        // Check if response is ok (status 200-299)
         if (response.ok) {
             // Show success modal
             showSuccessModal();
             // Reset form
             contactForm.reset();
         } else {
-            // Show error message
-            alert('Oops! There was a problem sending your message. Please try again or email me directly at camzyxworld@gmail.com');
+            // If it's a 422 error (unverified email), show friendly message
+            const responseData = await response.json();
+            if (response.status === 422 || (responseData && responseData.error)) {
+                // Show custom alert for email verification needed
+                alert('📧 Almost there!\n\nFormSubmit needs to verify your email address first.\n\nPlease check camzyxworld@gmail.com for a verification email and click the link.\n\nAfter verification, this form will work perfectly!');
+            } else {
+                // Other error - try regular form submission as fallback
+                contactForm.submit();
+            }
         }
     } catch (error) {
+        console.log('AJAX submission failed, trying regular form submission...');
+        
         // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<span class="btn-text">Send Message</span>';
         
-        // Show error message
-        alert('Oops! There was a problem sending your message. Please try again or email me directly at camzyxworld@gmail.com');
+        // Fallback: Use regular form submission
+        // Remove the event listener temporarily to avoid loop
+        contactForm.removeEventListener('submit', arguments.callee);
+        
+        // Show a message that we're submitting
+        alert('📨 Sending your message...\n\nYou may be redirected briefly. This is normal!');
+        
+        // Submit the form normally
+        contactForm.submit();
     }
 });
 
