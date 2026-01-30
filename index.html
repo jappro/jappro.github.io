@@ -374,9 +374,6 @@ Skills & Services
 <button type="submit" class="submit-button" id="submitBtn">
 <span class="btn-text">Send Message</span>
 </button>
-<p style="text-align:center;font-size:0.85rem;color:rgba(241,233,219,0.6);margin-top:1rem;">
-Note: First submission may require email verification
-</p>
 </form>
 </div>
 </div>
@@ -492,39 +489,22 @@ contactForm.addEventListener('submit', async function(e) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<span class="btn-text">Send Message</span>';
         
-        // Check if response is ok (status 200-299)
         if (response.ok) {
             // Show success modal
             showSuccessModal();
             // Reset form
             contactForm.reset();
         } else {
-            // If it's a 422 error (unverified email), show friendly message
-            const responseData = await response.json();
-            if (response.status === 422 || (responseData && responseData.error)) {
-                // Show custom alert for email verification needed
-                alert('📧 Almost there!\n\nFormSubmit needs to verify your email address first.\n\nPlease check camzyxworld@gmail.com for a verification email and click the link.\n\nAfter verification, this form will work perfectly!');
-            } else {
-                // Other error - try regular form submission as fallback
-                contactForm.submit();
-            }
+            // Show error message
+            alert('Oops! There was a problem sending your message. Please try again or email me directly at camzyxworld@gmail.com');
         }
     } catch (error) {
-        console.log('AJAX submission failed, trying regular form submission...');
-        
         // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<span class="btn-text">Send Message</span>';
         
-        // Fallback: Use regular form submission
-        // Remove the event listener temporarily to avoid loop
-        contactForm.removeEventListener('submit', arguments.callee);
-        
-        // Show a message that we're submitting
-        alert('📨 Sending your message...\n\nYou may be redirected briefly. This is normal!');
-        
-        // Submit the form normally
-        contactForm.submit();
+        // Show error message
+        alert('Oops! There was a problem sending your message. Please try again or email me directly at camzyxworld@gmail.com');
     }
 });
 
@@ -552,7 +532,6 @@ successModal.addEventListener('click', function(e) {
 });
 
 const observerOptions={threshold:.1,rootMargin:'0px 0px -50px 0px'},observer=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(e.target.style.opacity='1',e.target.style.transform='translateY(0)')})},observerOptions);document.querySelectorAll('.service-card, .stat-card, .experience-item, .project-card, .contact-card').forEach(e=>{e.style.opacity='0',e.style.transform='translateY(30px)',e.style.transition='opacity 0.6s ease, transform 0.6s ease',observer.observe(e)});const navbar=document.querySelector('.navbar');window.addEventListener('scroll',()=>{navbar.style.boxShadow=window.scrollY>50?'0 4px 20px rgba(0, 0, 0, 0.3)':'0 4px 16px rgba(0, 0, 0, 0.15)'}),window.innerWidth<=768&&((frameworkCircle=document.querySelector('.framework-circle'))&&(frameworkCircle.style.animation='none'));
-
 // SERVICE TOGGLE FUNCTIONALITY
 const serviceToggles=document.querySelectorAll('.service-toggle');
 serviceToggles.forEach(toggle=>{
