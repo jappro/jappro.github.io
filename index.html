@@ -325,25 +325,31 @@ Skills & Services
 <div class="container">
 <div class="collaboration-content">
 <div class="collaboration-header">
+<span class="section-label">Collaboration</span>
 <h2 class="section-title">Let's Work Together</h2>
-<p class="collaboration-description">Have a project in mind? Let's discuss how I can help your community grow with clarity, trust, and sustainable engagement.</p>
+<p class="collaboration-description">Have a project in mind? Let's discuss how I can help your Web3 community grow with clarity, trust, and sustainable engagement.</p>
 </div>
 
-<form class="collaboration-form" id="contactForm" action="https://formspree.io/f/2925758371762012050" method="POST">
+<form class="collaboration-form" id="contactForm" action="https://formsubmit.co/camzyxworld@gmail.com" method="POST">
+<!-- FormSubmit Configuration -->
+<input type="hidden" name="_subject" value="🚀 New Portfolio Contact Form Submission">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="text" name="_honey" style="display:none">
+<input type="hidden" name="_next" value="https://jappro.github.io/portfolio/#work">
+
 <div class="form-group">
 <label for="name">Your Name</label>
 <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 </div>
 <div class="form-group">
 <label for="email">Email Address</label>
-<input type="email" id="email" name="_replyto" placeholder="your.email@example.com" required>
+<input type="email" id="email" name="email" placeholder="your.email@example.com" required>
 </div>
 <div class="form-group">
 <label for="message">Message</label>
 <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
 </div>
-<input type="hidden" name="_subject" value="New Contact Form Submission - Portfolio">
-<input type="text" name="_gotcha" style="display:none">
 <button type="submit" class="submit-button" id="submitBtn">
 <span class="btn-text">Send Message</span>
 </button>
@@ -360,7 +366,7 @@ Skills & Services
 <i class="fas fa-check"></i>
 </div>
 <h3>Message Sent Successfully! 🎉</h3>
-<p>Thank you for contacting Japheth! Your message is recieved and will get back to you within 24-48 hours. Looking forward to our conversation!</p>
+<p>Thank you for reaching out! I've received your message and will get back to you within 24-48 hours. Looking forward to our conversation!</p>
 <div class="success-modal-footer">
 <button class="modal-btn modal-btn-primary" onclick="closeModal()">Awesome!</button>
 <button class="modal-btn modal-btn-secondary" onclick="sendAnother()">Send Another</button>
@@ -438,27 +444,24 @@ const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
 const successModal = document.getElementById('successModal');
 
-contactForm.addEventListener('submit', async function(e) {
-    // Check if using Formspree (contains formspree.io in action)
-    if (this.action.includes('YOUR_FORM_ID')) {
-        e.preventDefault();
-        alert('⚠️ Please configure Formspree first!\n\n1. Go to https://formspree.io\n2. Sign up for free\n3. Create a new form\n4. Replace YOUR_FORM_ID in the HTML with your actual form ID');
-        return;
+// Check if we just returned from a successful form submission
+window.addEventListener('load', function() {
+    // Check URL hash to see if we came back from form submission
+    const urlParams = new URLSearchParams(window.location.search);
+    if (window.location.hash === '#work' && document.referrer.includes('formsubmit')) {
+        showSuccessModal();
+        // Clean up URL
+        history.replaceState(null, '', window.location.pathname);
     }
-    
-    // For Formspree submissions, let the form submit naturally
-    // but show loading state
+});
+
+contactForm.addEventListener('submit', function(e) {
+    // Show loading state
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     
-    // The form will redirect or we can handle with AJAX
-    // For now, we'll use a simple approach
-    setTimeout(() => {
-        showSuccessModal();
-        contactForm.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="btn-text">Send Message</span>';
-    }, 1000);
+    // FormSubmit will handle the actual submission and redirect
+    // We'll show success modal on return
 });
 
 function showSuccessModal() {
